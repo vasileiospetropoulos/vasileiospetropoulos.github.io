@@ -1,21 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Audio Engineering | Vasileios Petropoulos</title>
-  <meta name="description" content="Recording, editing, mixing and mastering projects by Vasileios Petropoulos.">
+  <meta
+    name="description"
+    content="Film sound design, Foley, recording, editing and mixing projects by Vasileios Petropoulos."
+  >
+
   <style>
-    :root{color-scheme:dark;--bg:#0b0d12;--card:#141923;--text:#f0f2f7;--muted:#a2aaba;--accent:#76e4d5;--border:#29313e}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}a{color:inherit;text-decoration:none}.container{width:min(1000px,90%);margin:auto}header{border-bottom:1px solid var(--border);padding:22px 0}.nav{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.logo{font-weight:bold}.accent{color:var(--accent)}.nav-links{display:flex;gap:18px;color:var(--muted)}main{padding:70px 0 85px}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-size:.8rem}h1{font-size:clamp(2.4rem,7vw,4rem);line-height:1.12;margin:14px 0}.intro,.muted{color:var(--muted);max-width:730px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:23px}.card p{color:var(--muted)}.button{display:inline-block;padding:10px 16px;border:1px solid var(--border);border-radius:7px;font-weight:bold;margin-top:16px}.button.primary{background:var(--accent);color:#091311;border-color:var(--accent)}footer{border-top:1px solid var(--border);padding:25px 0;color:var(--muted);font-size:.9rem}@media(max-width:600px){.grid{grid-template-columns:1fr}.nav-links{gap:12px}}
+    :root {
+      color-scheme: dark;
+      --bg: #0b0d12;
+      --card: #141923;
+      --text: #f0f2f7;
+      --muted: #a2aaba;
+      --accent: #76e4d5;
+      --border: #29313e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1000px, 90%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: bold;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+    }
+
+    main {
+      padding: 70px 0 85px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .8rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      line-height: 1.12;
+      margin: 14px 0;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      line-height: 1.35;
+      margin-top: 0;
+    }
+
+    .intro,
+    .card p {
+      color: var(--muted);
+    }
+
+    .intro {
+      max-width: 730px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 23px;
+      min-width: 0;
+    }
+
+    .tag {
+      color: var(--accent);
+      font-size: .8rem;
+      letter-spacing: .5px;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #000;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-weight: bold;
+      margin-top: 18px;
+      transition: opacity .2s ease, border-color .2s ease;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #091311;
+      border-color: var(--accent);
+    }
+
+    .button:hover {
+      opacity: .85;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .additional-note {
+      margin-top: 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      main {
+        padding-top: 48px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <header><nav class="container nav"><a class="logo" href="index.html">Vasileios Petropoulos<span class="accent">.</span></a><div class="nav-links"><a href="index.html#about">About</a><a href="index.html#portfolio">All Areas</a><a href="index.html#contact">Contact</a></div></nav></header>
+  <header>
+    <nav class="container nav">
+      <a class="logo" href="index.html">
+        Vasileios Petropoulos<span class="accent">.</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#portfolio">All Areas</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
   <main class="container">
-    <p class="eyebrow">Selected Work · Audio</p><h1>Audio Engineering<span class="accent">.</span></h1>
-    <p class="intro">Recording, editing, mixing, mastering and audio production. This page will bring together my audio engineering projects, with listening examples and project notes as they are prepared for publication.</p>
-    <div class="grid"><article class="card"><h2>Projects in preparation</h2><p>Selected mixes, masters and audio engineering examples will be added here, with relevant details about the process and tools used.</p></article></div>
-    <a class="button primary" href="index.html#portfolio">← Back to Portfolio</a>
+    <p class="eyebrow">Selected Work · Film &amp; Audio Post-Production</p>
+
+    <h1>
+      Audio Engineering<span class="accent">.</span>
+    </h1>
+
+    <p class="intro">
+      Film sound design, Foley, recording, editing and mixing.
+      This page features audio projects and examples of my work
+      with sound for picture.
+    </p>
+
+    <div class="grid">
+      <!-- PROJECT 1: COSMOS -->
+      <article class="card">
+        <p class="tag">FILM · FOLEY · PRO TOOLS</p>
+
+        <h2>Film Sound Design &amp; Foley — Cosmos</h2>
+
+        <p>
+          The original footage already contained the dialogue between
+          the sheep and the human character. I created the rest of the
+          soundscape, adding Foley, sound effects and ambience to match
+          the on-screen action. Some sounds were recorded by me, while
+          others came from sound libraries such as Soundsnap. I edited,
+          synchronised and mixed everything in Avid Pro Tools.
+        </p>
+
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/pLgX7D4HaDk"
+            title="Film Sound Design &amp; Foley — Cosmos"
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <a
+          class="button primary"
+          href="https://www.youtube.com/watch?v=pLgX7D4HaDk"
+          target="_blank"
+          rel="noopener noreferrer">
+          Watch on YouTube ↗
+        </a>
+      </article>
+
+      <!-- FUTURE AUDIO ENGINEERING PROJECTS -->
+      <article class="card">
+        <p class="tag">MORE PROJECTS · COMING SOON</p>
+
+        <h2>More Audio Engineering Work</h2>
+
+        <p>
+          More recording, mixing, mastering and audio post-production
+          projects will be added here as their previews are prepared.
+        </p>
+      </article>
+    </div>
+
+    <p class="muted additional-note">
+      More projects and listening examples will be added as they are
+      prepared for online viewing.
+    </p>
+
+    <a class="button primary" href="index.html#portfolio">
+      ← Back to Portfolio
+    </a>
   </main>
-  <footer><div class="container">Vasileios Petropoulos · Athens, Greece</div></footer>
+
+  <footer>
+    <div class="container">
+      Vasileios Petropoulos · Athens, Greece
+    </div>
+  </footer>
 </body>
 </html>
