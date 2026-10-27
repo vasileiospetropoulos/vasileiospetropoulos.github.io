@@ -17,9 +17,13 @@
       --border: #29313e;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -29,11 +33,20 @@
       line-height: 1.7;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    .container { width: min(1000px, 90%); margin: auto; }
+    .container {
+      width: min(1000px, 90%);
+      margin: auto;
+    }
 
-    header { border-bottom: 1px solid var(--border); padding: 22px 0; }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
 
     nav {
       display: flex;
@@ -43,10 +56,19 @@
       gap: 18px;
     }
 
-    .logo { font-weight: bold; }
-    .accent { color: var(--accent); }
+    .logo {
+      font-weight: bold;
+    }
 
-    .nav-links { display: flex; gap: 20px; color: var(--muted); }
+    .accent {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      color: var(--muted);
+    }
 
     .hero {
       padding: 100px 0;
@@ -94,11 +116,20 @@
       border-color: var(--accent);
     }
 
-    section { padding: 65px 0; border-bottom: 1px solid var(--border); }
+    section {
+      padding: 65px 0;
+      border-bottom: 1px solid var(--border);
+    }
 
-    h2 { font-size: 2rem; margin: 8px 0 15px; }
+    h2 {
+      font-size: 2rem;
+      margin: 8px 0 15px;
+    }
 
-    .muted { color: var(--muted); max-width: 730px; }
+    .muted {
+      color: var(--muted);
+      max-width: 730px;
+    }
 
     .grid {
       display: grid;
@@ -113,9 +144,37 @@
       padding: 23px;
     }
 
-    .card p { color: var(--muted); margin-bottom: 0; }
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
 
-    .card .buttons { margin-top: 18px; }
+    /* Clickable category cards */
+    .area-card {
+      display: block;
+      height: 100%;
+      transition: border-color .18s ease, transform .18s ease;
+    }
+
+    .area-card:hover,
+    .area-card:focus-visible {
+      opacity: 1;
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    .area-card h3 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-arrow {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
 
     .contact {
       display: flex;
@@ -124,16 +183,33 @@
       margin-top: 20px;
     }
 
-    .contact a { color: var(--accent); overflow-wrap: anywhere; }
+    .contact a {
+      color: var(--accent);
+      overflow-wrap: anywhere;
+    }
 
-    footer { padding: 25px 0; color: var(--muted); font-size: .9rem; }
+    footer {
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
 
-    a:hover { opacity: .8; }
+    a:hover {
+      opacity: .8;
+    }
 
     @media (max-width: 600px) {
-      .grid { grid-template-columns: 1fr; }
-      .hero { padding: 70px 0; }
-      .nav-links { gap: 12px; }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
     }
   </style>
 </head>
@@ -141,7 +217,9 @@
 <body>
   <header>
     <nav class="container">
-      <a class="logo" href="#">Vasileios Petropoulos<span class="accent">.</span></a>
+      <a class="logo" href="index.html">
+        Vasileios Petropoulos<span class="accent">.</span>
+      </a>
 
       <div class="nav-links">
         <a href="#about">About</a>
@@ -156,7 +234,10 @@
       <div class="container">
         <p class="eyebrow">Audio · Music · Technology</p>
 
-        <h1>Vasileios<br><span class="accent">Petropoulos.</span></h1>
+        <h1>
+          Vasileios<br>
+          <span class="accent">Petropoulos.</span>
+        </h1>
 
         <p class="intro">
           Audio Engineer, Music Producer and Informatics Student,
@@ -164,8 +245,13 @@
         </p>
 
         <div class="buttons">
-          <a class="button primary" href="cv.pdf">View / Download CV ↗</a>
-          <a class="button" href="#portfolio">Explore Portfolio ↓</a>
+          <a class="button primary" href="cv.pdf">
+            View / Download CV ↗
+          </a>
+
+          <a class="button" href="#portfolio">
+            Explore Portfolio ↓
+          </a>
         </div>
       </div>
     </section>
@@ -201,62 +287,69 @@
         <h2>Areas of work.</h2>
 
         <p class="muted">
-          Explore the different areas of my work and projects.
+          Choose an area to explore its projects.
         </p>
 
         <div class="grid">
-          <article class="card">
-            <h3>Audio Engineering</h3>
+          <a
+            class="card area-card"
+            href="audio-engineering.html"
+            aria-label="Explore Audio Engineering projects"
+          >
+            <h3>
+              Audio Engineering
+              <span class="card-arrow">↗</span>
+            </h3>
+
             <p>
               Recording, editing, mixing, mastering and audio production.
             </p>
-          </article>
+          </a>
 
-          <article class="card">
-            <h3>Music Production</h3>
+          <a
+            class="card area-card"
+            href="music-production.html"
+            aria-label="Explore Music Production projects"
+          >
+            <h3>
+              Music Production
+              <span class="card-arrow">↗</span>
+            </h3>
+
             <p>
               Beatmaking, musical ideas and production projects.
             </p>
-          </article>
+          </a>
 
-          <article class="card">
-            <h3>Game Audio &amp; Sound Design</h3>
+          <a
+            class="card area-card"
+            href="game-audio.html"
+            aria-label="Explore Game Audio and Sound Design projects"
+          >
+            <h3>
+              Game Audio &amp; Sound Design
+              <span class="card-arrow">↗</span>
+            </h3>
+
             <p>
               Sound effects, Foley, environmental audio and audio storytelling.
             </p>
-          </article>
+          </a>
 
-          <article class="card">
-            <h3>Software Development</h3>
+          <a
+            class="card area-card"
+            href="software-development.html"
+            aria-label="Explore Software Development projects"
+          >
+            <h3>
+              Software Development
+              <span class="card-arrow">↗</span>
+            </h3>
 
             <p>
-              <strong>ClearCalc</strong> is a responsive calculator built with
-              React 19, TypeScript and Vite. It features Standard, Scientific
-              and Function modes, calculation history, keyboard support and
-              automated tests. Tauri 2 is used to package the application
-              for Windows, macOS and Linux.
+              Programming projects, applications and technical work.
             </p>
-
-            <div class="buttons">
-              <a
-                class="button primary"
-                href="https://github.com/vasileiospetropoulos/ClearCalc"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View on GitHub ↗
-              </a>
-
-              <a
-                class="button"
-                href="https://github.com/vasileiospetropoulos/ClearCalc/releases/tag/v1.0.0"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Desktop Downloads ↗
-              </a>
-            </div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
@@ -295,7 +388,9 @@
   </main>
 
   <footer>
-    <div class="container">Vasileios Petropoulos · Athens, Greece</div>
+    <div class="container">
+      Vasileios Petropoulos · Athens, Greece
+    </div>
   </footer>
 </body>
 </html>
