@@ -1,27 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Game Audio &amp; Sound Design | Vasileios Petropoulos</title>
-  <meta name="description" content="Game audio, sound design, Foley and audio storytelling projects by Vasileios Petropoulos.">
+
+  <meta
+    name="description"
+    content="Game audio, sound design, Foley and audio storytelling projects by Vasileios Petropoulos."
+  >
+
   <style>
-    :root{color-scheme:dark;--bg:#0b0d12;--card:#141923;--text:#f0f2f7;--muted:#a2aaba;--accent:#76e4d5;--border:#29313e}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}a{color:inherit;text-decoration:none}.container{width:min(1000px,90%);margin:auto}header{border-bottom:1px solid var(--border);padding:22px 0}.nav{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.logo{font-weight:bold}.accent{color:var(--accent)}.nav-links{display:flex;gap:18px;color:var(--muted)}main{padding:70px 0 85px}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-size:.8rem}h1{font-size:clamp(2.4rem,7vw,4rem);line-height:1.12;margin:14px 0}h2{font-size:1.35rem;margin-top:0}.intro,.card p{color:var(--muted)}.intro{max-width:730px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:23px}.tag{color:var(--accent);font-size:.8rem;letter-spacing:.5px}.button{display:inline-block;padding:10px 16px;border:1px solid var(--border);border-radius:7px;font-weight:bold;margin-top:24px}.button.primary{background:var(--accent);color:#091311;border-color:var(--accent)}footer{border-top:1px solid var(--border);padding:25px 0;color:var(--muted);font-size:.9rem}@media(max-width:600px){.grid{grid-template-columns:1fr}.nav-links{gap:12px}}
+    :root {
+      color-scheme: dark;
+      --bg: #0b0d12;
+      --card: #141923;
+      --text: #f0f2f7;
+      --muted: #a2aaba;
+      --accent: #76e4d5;
+      --border: #29313e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1000px, 90%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: bold;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+    }
+
+    main {
+      padding: 70px 0 85px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .8rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      line-height: 1.12;
+      margin: 14px 0;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      line-height: 1.35;
+      margin-top: 0;
+    }
+
+    .intro,
+    .card p {
+      color: var(--muted);
+    }
+
+    .intro {
+      max-width: 730px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 23px;
+      min-width: 0;
+    }
+
+    .tag {
+      color: var(--accent);
+      font-size: .8rem;
+      letter-spacing: .5px;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #000;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-weight: bold;
+      margin-top: 18px;
+      transition: opacity .2s ease, border-color .2s ease;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #091311;
+      border-color: var(--accent);
+    }
+
+    .button:hover {
+      opacity: .85;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .additional-note {
+      margin-top: 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      main {
+        padding-top: 48px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <header><nav class="container nav"><a class="logo" href="index.html">Vasileios Petropoulos<span class="accent">.</span></a><div class="nav-links"><a href="index.html#about">About</a><a href="index.html#portfolio">All Areas</a><a href="index.html#contact">Contact</a></div></nav></header>
+  <header>
+    <nav class="container nav">
+      <a class="logo" href="index.html">
+        Vasileios Petropoulos<span class="accent">.</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#portfolio">All Areas</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
   <main class="container">
-    <p class="eyebrow">Selected Work · Interactive &amp; Film Audio</p><h1>Game Audio &amp; Sound Design<span class="accent">.</span></h1>
-    <p class="intro">Sound effects, Foley, ambience, audio storytelling and interactive sound design. These projects showcase different approaches to creating sound for games, film and fantasy environments.</p>
+    <p class="eyebrow">Selected Work · Interactive &amp; Film Audio</p>
+
+    <h1>
+      Game Audio &amp; Sound Design<span class="accent">.</span>
+    </h1>
+
+    <p class="intro">
+      Sound effects, Foley, ambience, audio storytelling and interactive
+      sound design. These projects showcase different approaches to creating
+      sound for games, film and fantasy environments.
+    </p>
+
     <div class="grid">
-      <article class="card"><p class="tag">SOUND DESIGN · FANTASY</p><h2>Fantasy Combat Sound Design</h2><p>A collection of five short magic-combat effects, including an area-of-effect ground blast, arcane energy, a light beam, a sword barrage and a cryo freeze spell.</p></article>
-      <article class="card"><p class="tag">FILM · FOLEY</p><h2>Film Sound Design &amp; Foley — Cosmos</h2><p>A film sound project created in Pro Tools, adding Foley and ambience to picture alongside the existing dialogue. The soundscape combines recorded material and sound-library assets.</p></article>
-      <article class="card"><p class="tag">AUDIO STORYTELLING</p><h2>Medieval Fantasy — Audio Storytelling</h2><p>An audio-only fantasy narrative built around a harbor quest, a tavern fight, a rainy castle, a dragon battle and the resolution, using layered effects and environments.</p></article>
-      <article class="card"><p class="tag">UNITY · GAME AUDIO</p><h2>Survival Template — Unity Sound Design</h2><p>A team project using the Survival Template in Unity 2022.3.49f1. My contribution included footsteps, UI feedback, crafting and building Foley, environmental ambience, creature sounds and player feedback audio.</p></article>
+      <article class="card">
+        <p class="tag">SOUND DESIGN · FANTASY</p>
+
+        <h2>Fantasy Combat Sound Design</h2>
+
+        <p>
+          A collection of five short magic-combat effects, including an
+          area-of-effect ground blast, arcane energy, a light beam, a sword
+          barrage and a cryo freeze spell.
+        </p>
+
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/C3JLRhyegtk"
+            title="Fantasy Combat Sound Design — Vasileios Petropoulos"
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <a
+          class="button primary"
+          href="https://www.youtube.com/watch?v=C3JLRhyegtk"
+          target="_blank"
+          rel="noopener noreferrer">
+          Watch on YouTube ↗
+        </a>
+      </article>
+
+      <article class="card">
+        <p class="tag">FILM · FOLEY</p>
+
+        <h2>Film Sound Design &amp; Foley — Cosmos</h2>
+
+        <p>
+          A film sound project created in Pro Tools, adding Foley and ambience
+          to picture alongside the existing dialogue. The soundscape combines
+          recorded material and sound-library assets.
+        </p>
+      </article>
+
+      <article class="card">
+        <p class="tag">AUDIO STORYTELLING</p>
+
+        <h2>Medieval Fantasy — Audio Storytelling</h2>
+
+        <p>
+          An audio-only fantasy narrative built around a harbor quest, a tavern
+          fight, a rainy castle, a dragon battle and the resolution, using
+          layered effects and environments.
+        </p>
+      </article>
+
+      <article class="card">
+        <p class="tag">UNITY · GAME AUDIO</p>
+
+        <h2>Survival Template — Unity Sound Design</h2>
+
+        <p>
+          A team project using the Survival Template in Unity 2022.3.49f1.
+          My contribution included footsteps, UI feedback, crafting and
+          building Foley, environmental ambience, creature sounds and player
+          feedback audio.
+        </p>
+      </article>
     </div>
-    <p class="muted">Audio and video previews will be added to the project cards as they are prepared for online viewing.</p>
-    <a class="button primary" href="index.html#portfolio">← Back to Portfolio</a>
+
+    <p class="muted additional-note">
+      Additional audio and video previews will be added as more projects
+      are prepared for online viewing.
+    </p>
+
+    <a class="button primary" href="index.html#portfolio">
+      ← Back to Portfolio
+    </a>
   </main>
-  <footer><div class="container">Vasileios Petropoulos · Athens, Greece</div></footer>
+
+  <footer>
+    <div class="container">
+      Vasileios Petropoulos · Athens, Greece
+    </div>
+  </footer>
 </body>
 </html>
