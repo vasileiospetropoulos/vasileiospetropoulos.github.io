@@ -827,20 +827,26 @@
   inset: 0;
   pointer-events: none;
 
+  /* Blurred waveform and code, blended into the existing background */
   background-image:
-    linear-gradient(rgba(118, 228, 213, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(118, 228, 213, 0.045) 1px, transparent 1px);
-
-  background-size: 42px 42px;
-  opacity: 0.45;
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20500%22%20preserveAspectRatio%3D%22none%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%2376e4d5%22%20stroke-width%3D%222.4%22%20opacity%3D%22.78%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M0%20255%20H80%20l14%20-16%20l14%2032%20l14%20-55%20l14%2086%20l14%20-108%20l14%2075%20l14%20-29%20l14%2015%20H255%20l16%20-22%20l16%2042%20l16%20-65%20l16%20100%20l16%20-76%20l16%2044%20l16%20-23%20H435%20l16%20-18%20l16%2037%20l16%20-73%20l16%20112%20l16%20-82%20l16%2049%20l16%20-25%20H625%20l16%20-19%20l16%2038%20l16%20-61%20l16%2092%20l16%20-70%20l16%2039%20l16%20-19%20H810%20l16%20-22%20l16%2043%20l16%20-72%20l16%20105%20l16%20-79%20l16%2047%20l16%20-24%20H1000%20l16%20-17%20l16%2034%20l16%20-57%20l16%2084%20l16%20-62%20l16%2034%20l16%20-16%20H1200%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%20%20%3Cg%20fill%3D%22%23a78bfa%22%20opacity%3D%22.72%22%20font-family%3D%22monospace%22%20font-size%3D%2222%22%3E%0A%20%20%20%20%3Ctext%20x%3D%2290%22%20y%3D%22105%22%3Econst%20signal%20%3D%20processAudio%28input%29%3B%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22660%22%20y%3D%22155%22%3Ereturn%20waveform.normalize%28%29%3B%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22160%22%20y%3D%22425%22%3ErenderSound%28audio%2C%20frequency%29%3B%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22790%22%20y%3D%22390%22%3Eif%20%28signal.ready%29%20output.write%28%29%3B%3C%2Ftext%3E%0A%20%20%3C%2Fg%3E%0A%20%20%3Cg%20fill%3D%22%2376e4d5%22%20opacity%3D%22.44%22%20font-family%3D%22monospace%22%20font-size%3D%2214%22%3E%0A%20%20%20%20%3Ctext%20x%3D%22870%22%20y%3D%2290%22%3E0101%20%2F%20AUDIO_DATA%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22410%22%20y%3D%22470%22%3E%26lt%3Bsignal%26gt%3B%20%2F%2F%20creative%20systems%3C%2Ftext%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E"),
+    linear-gradient(rgba(118, 228, 213, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 228, 213, 0.035) 1px, transparent 1px);
+  background-repeat: no-repeat, repeat, repeat;
+  background-size: 100% 100%, 42px 42px, 42px 42px;
+  background-position: center, 0 0, 0 0;
+  filter: blur(3px);
+  opacity: 0.20;
   mask-image: linear-gradient(
     to bottom,
     transparent,
-    black 18%,
-    black 82%,
+    black 15%,
+    black 85%,
     transparent
   );
+  animation: portfolio-signal-drift 28s ease-in-out infinite alternate;
 }
+
 
 #portfolio > .container {
   position: relative;
@@ -865,6 +871,20 @@
 
   100% {
     transform: translate3d(-1%, 2%, 0) scale(1.02);
+  }
+}
+
+@keyframes portfolio-signal-drift {
+  0% {
+    transform: translate3d(-1.5%, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(1%, 0.5%, 0) scale(1.025);
+  }
+
+  100% {
+    transform: translate3d(-0.5%, -0.5%, 0) scale(1.01);
   }
 }
   </style>
