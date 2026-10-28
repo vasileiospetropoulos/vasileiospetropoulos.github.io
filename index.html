@@ -783,6 +783,90 @@
         transition-duration: .01ms !important;
       }
     }
+    /* Selected Work: subtle animated background */
+#portfolio {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+#portfolio::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -25% -15%;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 18% 28%,
+      rgba(60, 151, 153, 0.28),
+      transparent 37%
+    ),
+    radial-gradient(
+      ellipse at 78% 33%,
+      rgba(112, 79, 173, 0.23),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 55% 78%,
+      rgba(40, 95, 129, 0.20),
+      transparent 40%
+    );
+
+  filter: blur(55px);
+  opacity: 0.9;
+  animation: portfolio-glow-drift 22s ease-in-out infinite alternate;
+}
+
+#portfolio::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(rgba(118, 228, 213, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 228, 213, 0.045) 1px, transparent 1px);
+
+  background-size: 42px 42px;
+  opacity: 0.45;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 18%,
+    black 82%,
+    transparent
+  );
+}
+
+#portfolio > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Slightly translucent cards let the background show through */
+#portfolio .area-card {
+  background: rgba(20, 25, 35, 0.80);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes portfolio-glow-drift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(-1%, 2%, 0) scale(1.02);
+  }
+}
   </style>
 </head>
 
