@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,10 +71,34 @@
       color: var(--muted);
     }
 
+    /* HERO: existing introduction + new Audio x Code visual */
+
     .hero {
-      padding: 100px 0;
-      background: radial-gradient(ellipse at 80% 10%, #18312f, var(--bg) 65%);
+      padding: 85px 0;
+      background:
+        radial-gradient(
+          ellipse at 82% 12%,
+          rgba(24, 49, 47, .9),
+          transparent 52%
+        ),
+        radial-gradient(
+          ellipse at 82% 85%,
+          rgba(69, 53, 107, .12),
+          transparent 45%
+        ),
+        var(--bg);
       border-bottom: 1px solid var(--border);
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+      align-items: center;
+      gap: 32px;
+    }
+
+    .hero-copy {
+      min-width: 0;
     }
 
     .eyebrow {
@@ -87,6 +112,7 @@
       font-size: clamp(2.8rem, 8vw, 5rem);
       line-height: 1.1;
       margin: 18px 0;
+      letter-spacing: -.035em;
     }
 
     .intro {
@@ -108,6 +134,14 @@
       border: 1px solid var(--border);
       border-radius: 7px;
       font-weight: bold;
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        background-color .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
     }
 
     .button.primary {
@@ -116,7 +150,410 @@
       border-color: var(--accent);
     }
 
-    section {
+    .button.primary:hover {
+      opacity: 1;
+      background: #9af0e3;
+    }
+
+    .button:focus-visible,
+    .nav-links a:focus-visible,
+    .logo:focus-visible,
+    .contact a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* Animated visual panel */
+
+    .hero-visual {
+      position: relative;
+      isolation: isolate;
+      min-width: 0;
+      width: 100%;
+      padding: 21px;
+      overflow: hidden;
+      border: 1px solid rgba(118, 228, 213, .23);
+      border-radius: 16px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 25, 35, .97),
+          rgba(10, 15, 23, .97)
+        );
+      box-shadow:
+        0 24px 65px rgba(0, 0, 0, .28),
+        inset 0 1px 0 rgba(255, 255, 255, .035);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+      opacity: .32;
+      background-image:
+        linear-gradient(rgba(118, 228, 213, .055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(118, 228, 213, .055) 1px, transparent 1px);
+      background-size: 27px 27px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      width: 230px;
+      height: 230px;
+      right: -120px;
+      top: 100px;
+      pointer-events: none;
+      border-radius: 50%;
+      background: rgba(118, 228, 213, .08);
+      filter: blur(45px);
+    }
+
+    .hero-visual > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .visual-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 19px;
+      color: #d8e5e8;
+      font-size: .7rem;
+      letter-spacing: 1.2px;
+    }
+
+    .visual-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: bold;
+    }
+
+    .brand-spark {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(118, 228, 213, .6);
+    }
+
+    .visual-index {
+      color: #778597;
+      font-size: .65rem;
+    }
+
+    /* Waveform module */
+
+    .wave-panel {
+      padding: 15px 15px 12px;
+      border: 1px solid rgba(118, 228, 213, .13);
+      border-radius: 10px;
+      background: rgba(8, 14, 21, .76);
+    }
+
+    .module-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .module-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #e1e8ee;
+      font-size: .75rem;
+      font-weight: bold;
+      letter-spacing: .8px;
+    }
+
+    .mini-wave-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      height: 17px;
+    }
+
+    .mini-wave-icon span {
+      display: block;
+      width: 3px;
+      border-radius: 3px;
+      background: var(--accent);
+    }
+
+    .mini-wave-icon span:nth-child(1) {
+      height: 7px;
+    }
+
+    .mini-wave-icon span:nth-child(2) {
+      height: 14px;
+    }
+
+    .mini-wave-icon span:nth-child(3) {
+      height: 9px;
+    }
+
+    .mini-wave-icon span:nth-child(4) {
+      height: 5px;
+    }
+
+    .live-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 7px;
+      border: 1px solid rgba(118, 228, 213, .16);
+      border-radius: 5px;
+      color: var(--accent);
+      font-size: .59rem;
+      letter-spacing: .8px;
+    }
+
+    .status-light {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: status-pulse 1.8s ease-in-out infinite;
+    }
+
+    .waveform {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 79px;
+      margin: 9px 0 5px;
+      overflow: hidden;
+    }
+
+    .waveform span {
+      display: block;
+      flex: 1 1 0;
+      min-width: 2px;
+      max-width: 6px;
+      height: var(--bar-height);
+      border-radius: 99px;
+      transform-origin: center;
+      background: linear-gradient(
+        to top,
+        #4f8fbc,
+        var(--accent)
+      );
+      opacity: .83;
+      animation: waveform-pulse 1.35s ease-in-out infinite;
+      animation-delay: var(--delay);
+      will-change: transform;
+    }
+
+    .waveform span:nth-child(3n) {
+      background: linear-gradient(to top, #6a6bcb, #a8a5ff);
+    }
+
+    .wave-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      color: #7e8b9b;
+      font-size: .59rem;
+      letter-spacing: 1px;
+    }
+
+    .signal-track {
+      position: relative;
+      height: 1px;
+      flex: 1;
+      overflow: hidden;
+      background: rgba(118, 228, 213, .15);
+    }
+
+    .signal-track::after {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 32%;
+      background: var(--accent);
+      box-shadow: 0 0 9px var(--accent);
+      animation: signal-scan 2.8s ease-in-out infinite alternate;
+    }
+
+    /* Visual connection between audio and programming */
+
+    .signal-bridge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 27px;
+    }
+
+    .bridge-line {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(118, 228, 213, .38),
+        rgba(167, 139, 250, .38),
+        transparent
+      );
+    }
+
+    .bridge-node {
+      display: grid;
+      place-items: center;
+      width: 21px;
+      height: 21px;
+      border: 1px solid rgba(167, 139, 250, .38);
+      border-radius: 50%;
+      color: #c4b5fd;
+      background: #141622;
+      font-size: .9rem;
+      line-height: 1;
+      animation: node-glow 3s ease-in-out infinite;
+    }
+
+    /* Programming terminal */
+
+    .code-panel {
+      overflow: hidden;
+      border: 1px solid rgba(167, 139, 250, .22);
+      border-radius: 10px;
+      background: rgba(13, 15, 25, .94);
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 39px;
+      padding: 0 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      background: rgba(255, 255, 255, .018);
+    }
+
+    .window-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #46505e;
+    }
+
+    .window-dot:first-child {
+      background: #d77f8b;
+    }
+
+    .window-dot:nth-child(2) {
+      background: #d6b76e;
+    }
+
+    .window-dot:nth-child(3) {
+      background: #73c7a0;
+    }
+
+    .code-filename {
+      margin-left: 7px;
+      color: #8490a3;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: .68rem;
+    }
+
+    .code-language {
+      margin-left: auto;
+      color: #a6a0e9;
+      font-size: .61rem;
+      letter-spacing: .8px;
+    }
+
+    .code-content {
+      padding: 14px 12px;
+      overflow: hidden;
+    }
+
+    .code-row {
+      display: grid;
+      grid-template-columns: 21px minmax(0, 1fr);
+      gap: 10px;
+      align-items: baseline;
+      min-width: 0;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: .76rem;
+      line-height: 1.95;
+    }
+
+    .line-number {
+      color: #4d596b;
+      text-align: right;
+      user-select: none;
+    }
+
+    .code-keyword {
+      color: #c4b5fd;
+    }
+
+    .code-variable {
+      color: #8ddfd5;
+    }
+
+    .code-string {
+      color: #e7bd8c;
+    }
+
+    .code-punctuation {
+      color: #aab5c7;
+    }
+
+    .code-comment {
+      color: #65758a;
+    }
+
+    .code-typing {
+      color: #c4b5fd;
+      white-space: pre;
+    }
+
+    .code-typing::after {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 1em;
+      margin-left: 3px;
+      vertical-align: -.15em;
+      background: var(--accent);
+      animation: cursor-blink 1s steps(2, start) infinite;
+    }
+
+    .visual-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 15px 1px 0;
+      color: #7c8999;
+      font-size: .6rem;
+      letter-spacing: 1.1px;
+    }
+
+    .visual-bottom span:last-child {
+      color: #a9b7c7;
+    }
+
+    /* Existing portfolio sections */
+
+    section:not(.hero) {
       padding: 65px 0;
       border-bottom: 1px solid var(--border);
     }
@@ -150,6 +587,7 @@
     }
 
     /* Clickable category cards */
+
     .area-card {
       display: block;
       height: 100%;
@@ -198,17 +636,151 @@
       opacity: .8;
     }
 
+    /* Tablet and smaller screens */
+
+    @media (max-width: 1050px) {
+      .hero-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 38px;
+      }
+
+      .hero-copy {
+        max-width: 760px;
+      }
+
+      .hero-visual {
+        width: min(100%, 520px);
+      }
+    }
+
     @media (max-width: 600px) {
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero-layout {
+        gap: 32px;
+      }
+
+      h1 {
+        overflow-wrap: anywhere;
+      }
+
+      .intro {
+        font-size: 1.02rem;
+      }
+
+      .hero-visual {
+        padding: 15px;
+        border-radius: 12px;
+      }
+
+      .visual-topline {
+        font-size: .64rem;
+      }
+
+      .wave-panel {
+        padding: 12px 10px 10px;
+      }
+
+      .waveform {
+        gap: 3px;
+        height: 70px;
+      }
+
+      .code-content {
+        padding: 12px 8px;
+      }
+
+      .code-row {
+        gap: 7px;
+        font-size: .69rem;
+      }
+
+      .visual-bottom {
+        font-size: .55rem;
+      }
+
+      section:not(.hero) {
+        padding: 52px 0;
+      }
+
       .grid {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding: 70px 0;
-      }
-
       .nav-links {
         gap: 12px;
+      }
+    }
+
+    /* Respect the visitor's motion preferences */
+
+    @keyframes waveform-pulse {
+      0%, 100% {
+        transform: scaleY(.38);
+        opacity: .62;
+      }
+
+      50% {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes signal-scan {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(210%);
+      }
+    }
+
+    @keyframes status-pulse {
+      0%, 100% {
+        opacity: .55;
+      }
+
+      50% {
+        opacity: 1;
+        box-shadow: 0 0 8px var(--accent);
+      }
+    }
+
+    @keyframes node-glow {
+      0%, 100% {
+        box-shadow: 0 0 0 rgba(167, 139, 250, 0);
+      }
+
+      50% {
+        box-shadow: 0 0 13px rgba(167, 139, 250, .18);
+      }
+    }
+
+    @keyframes cursor-blink {
+      0%, 49% {
+        opacity: 1;
+      }
+
+      50%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
@@ -231,31 +803,173 @@
 
   <main>
     <section class="hero">
-      <div class="container">
-        <p class="eyebrow">Audio · Music · Technology</p>
+      <div class="container hero-layout">
 
-        <h1>
-          Vasileios<br>
-          <span class="accent">Petropoulos.</span>
-        </h1>
+        <!-- Original introduction: preserved -->
+        <div class="hero-copy">
+          <p class="eyebrow">Audio · Music · Technology</p>
 
-        <p class="intro">
-          Audio Engineer, Music Producer and Informatics Student,
-          interested in sound, creative projects and software development.
-        </p>
+          <h1>
+            Vasileios<br>
+            <span class="accent">Petropoulos.</span>
+          </h1>
 
-        <div class="buttons">
-          <a class="button primary" href="cv.pdf">
-            View / Download CV ↗
-          </a>
+          <p class="intro">
+            Audio Engineer, Music Producer and Informatics Student,
+            interested in sound, creative projects and software development.
+          </p>
 
-          <a class="button" href="#portfolio">
-            Explore Portfolio ↓
-          </a>
+          <div class="buttons">
+            <a class="button primary" href="cv.pdf">
+              View / Download CV ↗
+            </a>
+
+            <a class="button" href="#portfolio">
+              Explore Portfolio ↓
+            </a>
+          </div>
         </div>
+
+        <!-- New decorative Audio x Code visual -->
+        <aside
+          class="hero-visual"
+          aria-label="Animated illustration combining an audio waveform and programming code"
+        >
+          <div class="visual-topline">
+            <span class="visual-brand">
+              <span class="brand-spark"></span>
+              SIGNAL × SYSTEMS
+            </span>
+
+            <span class="visual-index">CREATIVE TECH / 01</span>
+          </div>
+
+          <!-- Audio waveform -->
+          <div class="wave-panel">
+            <div class="module-heading">
+              <div class="module-title">
+                <span class="mini-wave-icon" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                AUDIO SIGNAL
+              </div>
+
+              <span class="live-status">
+                <span class="status-light"></span>
+                IN MOTION
+              </span>
+            </div>
+
+            <div class="waveform" aria-hidden="true">
+              <span style="--bar-height: 15px; --delay: -.1s"></span>
+              <span style="--bar-height: 25px; --delay: -.7s"></span>
+              <span style="--bar-height: 39px; --delay: -.3s"></span>
+              <span style="--bar-height: 20px; --delay: -.9s"></span>
+              <span style="--bar-height: 32px; --delay: -.5s"></span>
+              <span style="--bar-height: 48px; --delay: -.2s"></span>
+              <span style="--bar-height: 28px; --delay: -.8s"></span>
+              <span style="--bar-height: 17px; --delay: -.4s"></span>
+              <span style="--bar-height: 37px; --delay: -1s"></span>
+              <span style="--bar-height: 55px; --delay: -.6s"></span>
+              <span style="--bar-height: 34px; --delay: -.1s"></span>
+              <span style="--bar-height: 23px; --delay: -.7s"></span>
+              <span style="--bar-height: 43px; --delay: -.4s"></span>
+              <span style="--bar-height: 58px; --delay: -.9s"></span>
+              <span style="--bar-height: 31px; --delay: -.3s"></span>
+              <span style="--bar-height: 19px; --delay: -.8s"></span>
+              <span style="--bar-height: 39px; --delay: -.5s"></span>
+              <span style="--bar-height: 52px; --delay: -.2s"></span>
+              <span style="--bar-height: 29px; --delay: -.7s"></span>
+              <span style="--bar-height: 44px; --delay: -.4s"></span>
+              <span style="--bar-height: 60px; --delay: -.9s"></span>
+              <span style="--bar-height: 35px; --delay: -.1s"></span>
+              <span style="--bar-height: 22px; --delay: -.6s"></span>
+              <span style="--bar-height: 40px; --delay: -.3s"></span>
+              <span style="--bar-height: 53px; --delay: -.8s"></span>
+              <span style="--bar-height: 30px; --delay: -.5s"></span>
+              <span style="--bar-height: 19px; --delay: -.2s"></span>
+              <span style="--bar-height: 37px; --delay: -.9s"></span>
+              <span style="--bar-height: 48px; --delay: -.4s"></span>
+              <span style="--bar-height: 27px; --delay: -.7s"></span>
+              <span style="--bar-height: 42px; --delay: -.2s"></span>
+              <span style="--bar-height: 56px; --delay: -.6s"></span>
+              <span style="--bar-height: 32px; --delay: -.3s"></span>
+              <span style="--bar-height: 21px; --delay: -.8s"></span>
+              <span style="--bar-height: 36px; --delay: -.5s"></span>
+              <span style="--bar-height: 25px; --delay: -.1s"></span>
+            </div>
+
+            <div class="wave-footer">
+              <span>WAVEFORM</span>
+              <span class="signal-track"></span>
+              <span>SIGNAL FLOW</span>
+            </div>
+          </div>
+
+          <!-- Connection between sound and software -->
+          <div class="signal-bridge" aria-hidden="true">
+            <span class="bridge-line"></span>
+            <span class="bridge-node">×</span>
+            <span class="bridge-line"></span>
+          </div>
+
+          <!-- Programming terminal -->
+          <div class="code-panel">
+            <div class="code-header">
+              <span class="window-dot"></span>
+              <span class="window-dot"></span>
+              <span class="window-dot"></span>
+
+              <span class="code-filename">creative-work.js</span>
+              <span class="code-language">CODE</span>
+            </div>
+
+            <div class="code-content">
+              <div class="code-row">
+                <span class="line-number">01</span>
+                <span>
+                  <span class="code-keyword">const</span>
+                  <span class="code-variable"> portfolio</span>
+                  <span class="code-punctuation"> = {</span>
+                </span>
+              </div>
+
+              <div class="code-row">
+                <span class="line-number">02</span>
+                <span>
+                  &nbsp;&nbsp;<span class="code-variable">audio</span>:
+                  <span class="code-string">"sound design"</span>,
+                </span>
+              </div>
+
+              <div class="code-row">
+                <span class="line-number">03</span>
+                <span class="code-typing" id="code-typing">  focus: "creative tech",</span>
+              </div>
+
+              <div class="code-row">
+                <span class="line-number">04</span>
+                <span>
+                  <span class="code-punctuation">};</span>
+                  <span class="code-comment"> // ideas into reality</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="visual-bottom">
+            <span>CREATIVE ENGINEERING</span>
+            <span>DESIGN · SOUND · CODE</span>
+          </div>
+        </aside>
+
       </div>
     </section>
 
+    <!-- Original About section: preserved -->
     <section id="about">
       <div class="container">
         <p class="eyebrow">About Me</p>
@@ -280,6 +994,7 @@
       </div>
     </section>
 
+    <!-- Original Portfolio section: preserved -->
     <section id="portfolio">
       <div class="container">
         <p class="eyebrow">Selected Work</p>
@@ -354,6 +1069,7 @@
       </div>
     </section>
 
+    <!-- Original Contact section: preserved -->
     <section id="contact">
       <div class="container">
         <p class="eyebrow">Contact</p>
@@ -392,5 +1108,71 @@
       Vasileios Petropoulos · Athens, Greece
     </div>
   </footer>
+
+  <!-- Small, self-contained typing animation for the code illustration -->
+  <script>
+    (() => {
+      const typingLine = document.getElementById("code-typing");
+
+      if (!typingLine) {
+        return;
+      }
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (prefersReducedMotion) {
+        return;
+      }
+
+      const snippets = [
+        '  focus: "creative tech",',
+        '  focus: "game audio",',
+        '  focus: "software",'
+      ];
+
+      let snippetIndex = 0;
+      let characterIndex = snippets[0].length;
+      let deleting = true;
+
+      function animateCode() {
+        const currentSnippet = snippets[snippetIndex];
+
+        if (deleting) {
+          characterIndex = Math.max(0, characterIndex - 1);
+          typingLine.textContent = currentSnippet.slice(0, characterIndex);
+
+          if (characterIndex === 0) {
+            deleting = false;
+            snippetIndex = (snippetIndex + 1) % snippets.length;
+            window.setTimeout(animateCode, 260);
+            return;
+          }
+
+          window.setTimeout(animateCode, 24);
+          return;
+        }
+
+        const nextSnippet = snippets[snippetIndex];
+        characterIndex = Math.min(
+          nextSnippet.length,
+          characterIndex + 1
+        );
+
+        typingLine.textContent = nextSnippet.slice(0, characterIndex);
+
+        if (characterIndex === nextSnippet.length) {
+          deleting = true;
+          window.setTimeout(animateCode, 1600);
+          return;
+        }
+
+        window.setTimeout(animateCode, 43);
+      }
+
+      window.setTimeout(animateCode, 1800);
+    })();
+  </script>
 </body>
 </html>
