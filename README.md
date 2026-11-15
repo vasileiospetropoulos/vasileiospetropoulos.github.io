@@ -14,7 +14,9 @@ This repository contains my portfolio website and showcases my interests and pro
 - **Portfolio Website:** https://vasileiospetropoulos.github.io
 - **GitHub:** https://github.com/vasileiospetropoulos
 - **Linktree:** https://linktr.ee/anubisthejackalheaded
-- **Email:** labs4anubis@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/vasileios-petropoulos-667a9244b/
+- **Email #1:** petropoulos.tr.basilis@gmail.com
+- **Email #2:** labs4anubis@gmail.com
 
 ---
 
